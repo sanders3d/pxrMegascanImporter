@@ -5,7 +5,21 @@ Requirements
 - Renderman Pro Server 26.x
 - Renderman for Blender 26.x ( https://github.com/prman-pixar/RenderManForBlender )
 - Miniumum Blender 4.3
-  
+- Quixel Megascans Bridge Application
+- required download settings in Bridge:
+        Geometry:
+          FBX, LOD0, LOD1
+        Textures ( 4K )
+          Albedo - JPEG
+          Specular - JPEG
+          Roughness - JPEG
+          Translucency - JPEG
+          Opacity - JPEG
+          Bump - EXR
+          Normal - EXR
+          NormalBump - EXR
+          Displacement - EXR  
+
 Installation
 - create environment "QUIXEL_JSON" variable that points to the "assetData.json".
 - create environment "RMANTREE" variable that points to the install directory of RendermanProServer.
