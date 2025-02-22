@@ -1,0 +1,9 @@
+schema_version = "0.0.3"
+id = "pxr_megascan"
+version = "0.0.3"
+name = "PxrMegascan Importer"
+tagline = "Megascan/Renderman importer"
+maintainer = "Stefan Andersson <sanders3d@gmail.com>"
+type = "add-on"
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
