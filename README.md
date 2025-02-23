@@ -32,11 +32,20 @@ UI is present in the 3D viewport ( see import_asset.png file )
 Recommended is that you do this in a .bashrc file and launch blender from a terminal.
 Example of contents in a .bashrc
 
+Linux Example
 ```
 export QUIXEL_JSON=/mnt/projects/Megascans/Downloaded/assetsData.json
 export RMANTREE=/opt/pixar/RenderManProServer-26.3
 export OCIO=$RMANTREE/lib/ocio/ACES-1.3/config.ocio
 ```
+
+Macos Example
+```
+export QUIXEL_JSON=/Users/stan/Documents/Megascans\ Library/Downloaded/assetsData.json
+export RMANTREE=/Applications/Pixar/RenderManProServer-26.3
+export OCIO=$RMANTREE/lib/ocio/ACES-1.3/config.ocio
+```
+
 Download the zip file and install the addon via preferences.
 
 **Limitations**
