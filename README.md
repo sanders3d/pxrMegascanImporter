@@ -3,6 +3,10 @@
 Blender addon to get megascan asset with renderman.
 UI is present in the 3D viewport ( see import_asset.png file )
 
+**A Youtube Video about the installation and usage**
+
+https://www.youtube.com/watch?v=4U22XPkD0Xw
+
 **Requirements**
 - Renderman Pro Server 26.x
 - Renderman for Blender 26.x ( https://github.com/prman-pixar/RenderManForBlender )
