@@ -1,6 +1,7 @@
 **pxrMegascanImporter**
 
-Blender addon to get megascan asset with renderman
+Blender addon to get megascan asset with renderman.
+UI is present in the 3D viewport ( see import_asset.png file )
 
 **Requirements**
 - Renderman Pro Server 26.x
