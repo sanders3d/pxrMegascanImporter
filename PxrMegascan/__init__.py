@@ -17,20 +17,11 @@ def register_properties():
     bpy.types.Scene.ms_texture_size = bpy.props.EnumProperty(
         name="My Combo Box",
         description="Choose an option",
-        items= [ ("(K", "8K", "8K"),
+        items= [ ("8K", "8K", "8K"),
                  ("4K", "4K", "4K "),
-                 ("2k", "2k", "2k"),
+                 ("2K", "2K", "2K"),
         ],
         default="4K"
-    )
-    bpy.types.Scene.ms_texture_type = bpy.props.EnumProperty(
-        name="file format",
-        description="Choose an option",
-        items= [    ("tex", "tex", "tex"),
-                    ("exr", "exr", "exr"),
-                    ("jpg", "jpg", "jpg"),
-        ],
-        default="tex"
     )
     bpy.types.Scene.ms_manifold = bpy.props.EnumProperty(
             name="My Combo Box",
@@ -96,7 +87,6 @@ class MegascanPanelOP(bpy.types.Operator):
         ms = MegascanImporter()        
         ms.run( context.scene.ms_id_text, 
                 context.scene.ms_texture_size, 
-                context.scene.ms_texture_type,
                 context.scene.ms_manifold )
         return {'FINISHED'}
 
@@ -282,8 +272,8 @@ class MegascanImporter():
                 node.filename_colorspace = "srgb_texture"
                 if not asset_type.lower() in ["decals"]:
                     try:
-                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/2k") if "albedo" in texture.lower()][0]
-                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_albedo", f"{self.asset_root}/Thumbs/2k/{textureFile}")
+                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/1k") if "albedo" in texture.lower()][0]
+                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_albedo", f"{self.asset_root}/Thumbs/1k/{textureFile}")
                         bl_node.location = [(bl_posx - 300), (bl_posy + 300)]
                         self.nodeTree.links.new(bl_bxdf.inputs["Base Color"], bl_node.outputs[0])                
                     except IndexError:
@@ -295,8 +285,8 @@ class MegascanImporter():
                 node.filename_colorspace = "srgb_texture"
                 if not asset_type.lower() in [ "decals"]:
                     try:
-                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/2k") if "specular" in texture.lower()][0]
-                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_specular", f"{self.asset_root}/Thumbs/2k/{textureFile}")
+                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/1k") if "specular" in texture.lower()][0]
+                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_specular", f"{self.asset_root}/Thumbs/1k/{textureFile}")
                         bl_node.location = [(bl_posx - 300), (bl_posy + 200)]
                         self.nodeTree.links.new(bl_bxdf.inputs[14], bl_node.outputs[0])                 
                     except IndexError:
@@ -309,8 +299,8 @@ class MegascanImporter():
                 
                 if not asset_type.lower() in ["decals"]:
                     try:
-                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/2k") if "roughness" in texture.lower()][0]
-                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_roughness", f"{self.asset_root}/Thumbs/2k/{textureFile}")
+                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/1k") if "roughness" in texture.lower()][0]
+                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_roughness", f"{self.asset_root}/Thumbs/1k/{textureFile}")
                         bl_node.image.colorspace_settings.name = "Raw"
                         bl_node.location = [(bl_posx - 300), (bl_posy + 100)]
                         self.nodeTree.links.new(bl_bxdf.inputs["Roughness"], bl_node.outputs[0]) 
@@ -333,8 +323,8 @@ class MegascanImporter():
 
                 if not asset_type.lower() in ["decals"]:
                     try:
-                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/2k") if "opacity" in texture.lower()][0]
-                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_opacity", f"{self.asset_root}/Thumbs/2k/{textureFile}")
+                        textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/1k") if "opacity" in texture.lower()][0]
+                        bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_opacity", f"{self.asset_root}/Thumbs/1k/{textureFile}")
                         bl_node.image.colorspace_settings.name = "Raw"
                         bl_node.location = [(bl_posx - 300), bl_posy]
                         self.nodeTree.links.new(bl_bxdf.inputs["Alpha"], bl_node.outputs[0])
@@ -373,9 +363,9 @@ class MegascanImporter():
                 self.nodeTree.links.new(pxrdisplace.inputs["Scalar Displacement"], pxrremap.outputs[1])
                 self.nodeTree.links.new(out.inputs["Displacement"], pxrdisplace.outputs[0])
                 
-                textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/2k") if "displacement" in texture.lower()][0]
+                textureFile = [texture for texture in os.listdir(f"{self.asset_root}/Thumbs/1k") if "displacement" in texture.lower()][0]
                 if textureFile:
-                    bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_opacity", f"{self.asset_root}/Thumbs/2k/{textureFile}")
+                    bl_node = self.create_bl_node("ShaderNodeTexImage", "bl_opacity", f"{self.asset_root}/Thumbs/1k/{textureFile}")
                     bl_node.image.colorspace_settings.name = "Raw"
                     bl_node.location = [(bl_posx - 300), bl_posy]
                     bl_disp_node = self.create_bl_node("ShaderNodeDisplacement", "bl_displacement")
@@ -390,11 +380,10 @@ class MegascanImporter():
 
 
 
-    def run(self, ms_id, ms_texture_size, ms_texture_type, ms_manifold ):
+    def run(self, ms_id, ms_texture_size, ms_manifold ):
         # -----------------------------------------------
         # fetch what the user has entered
         # -----------------------------------------------
-        self.map_format = "jpeg"
         self.map_size = ms_texture_size
         self.ms_id = ms_id
         self.manifold = ms_manifold
