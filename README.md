@@ -51,10 +51,3 @@ export OCIO=$RMANTREE/lib/ocio/ACES-1.3/config.ocio
 ```
 
 Download the zip file and install the addon via preferences.
-
-**Limitations**
-
-The UI shows options for 2K,4K,8K, this is a lie. It will only do 4K. 
-The option to chose texture format will be removed. I will let renderman do the conversion based on the OCIO config.
-
-
