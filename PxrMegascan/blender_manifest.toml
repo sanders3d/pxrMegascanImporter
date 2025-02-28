@@ -1,6 +1,6 @@
-schema_version = "0.0.3"
+schema_version = "0.0.4"
 id = "pxr_megascan"
-version = "0.0.3"
+version = "0.0.4"
 name = "PxrMegascan Importer"
 tagline = "Megascan/Renderman importer"
 maintainer = "Stefan Andersson <sanders3d@gmail.com>"
